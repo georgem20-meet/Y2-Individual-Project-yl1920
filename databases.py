@@ -39,8 +39,14 @@ def query_by_header(header):
 	news = session.query(News).filter_by(header = header).first()
 	return news
 
-def edit_image(header, image):
-	query_by_header(header).image = image
+def edit_image(header, image, body, link):
+	query_by_header(header).images = image
+	session.commit()
+
+	query_by_header(header).body = body
+	session.commit()
+
+	query_by_header(header).link = link
 	session.commit()
 
 
@@ -54,4 +60,5 @@ def delete_News(choose):
 	info = session.query(
 		News).filter_by(
 		header= choose).delete()
+	session.commit()
 	return info

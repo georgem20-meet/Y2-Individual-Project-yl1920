@@ -25,9 +25,9 @@ def homepage():
 
 	return render_template('index.html',info= info)
 
-@app.route('/add' methods=["POST"])
+@app.route('/add', methods=["POST"])
 def add():	
-	info = query_all()
+	
 
 	header = request.form["header"]
 	body= request.form["body"]
@@ -35,7 +35,7 @@ def add():
 	link = request.form["link"]
 
 	add_News(header, body, images, link)
-
+	info = query_all()
 	return render_template('index.html',info= info)
 
 
@@ -49,8 +49,7 @@ def editpage():
 	images= request.form["images"]
 	link = request.form["link"]
 
-	edit_image(header, image
-)
+	edit_image(header, images, body, link)
 	# left.position = request.form['left.position']
 	# middle.position = request.form['midde.position']
 	# right.position = request.form['right.position']
